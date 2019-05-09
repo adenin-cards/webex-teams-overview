@@ -35,16 +35,10 @@ properties:
                 <span>{{ displayName }}</span>.&nbsp;<span class="grey">{{ description }}</span>
               </div>
             {% endif %}
-      			{% if fileCount == 1 %}
+      			{% if fileCount > 0 %}
         			<div class="layout-horizontal mbsm">
         				<iron-image sizing="cover" class="file" preload src="/components/webex-teams-overview/Webex_Files.svg"></iron-image>
-        				<span style="padding:5px">&nbsp;1 file attachment</span>
-        			</div>
-      			{% endif %}
-      			{% if fileCount > 1 %}
-        			<div class="layout-horizontal mbsm">
-          			<iron-image sizing="cover" class="file" preload src="/components/webex-teams-overview/Webex_Files.svg"></iron-image>
-        				<span style="padding:5px">&nbsp;{{ fileCount }}&nbsp;file attachments</span>
+        				<span style="padding:5px">&nbsp;{{ fileCount }} file {% if fileCount == 1 %}attachment{% else %}attachments{% endif %}</span>
         			</div>
       			{% endif %}
             {% if gtype == "last" or gtype == "firstlast" %}
