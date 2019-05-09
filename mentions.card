@@ -1,18 +1,11 @@
 properties:
-  view1:
-    type: element
-    title: Liquid View 1
-    xtype: at-core-view
-    view: |-
-      <div class="font-display1 background-lightGrey black px pbsm">
-        	Recent Mentions
-      </div>
   vlist2:
     type: element
     xtype: at-core-vlist
-    listHeight: 300px
+    listHeight: 500px
     itemComponent: webex-teams-overview/webex-teams-overview-message-card
     modelRoot: state.model.mentions
+    listHeightExpanded: 500px
 rules: []
 $meta:
   cardId: !!int 23

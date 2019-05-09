@@ -8,41 +8,55 @@ properties:
       {% if initial %}
       	<div class="pysm"></div>
       {% endif %}
-      <div class="layout-horizontal mx">
-      	<div class="layout-self-start mlsm">
-      		{% if gtype == "first" or gtype == "firstlast" %}
-      			{% if roomAvatar %}
-      				<iron-image sizing="cover" preload class="avatar layout-self-start mr" src="{{ roomAvatar }}"></iron-image>
-        		{% else %}
-        			<div class="avatar initials text-primary white background-grey mr">{{initials}}</div>
-        		{% endif %}
-        	{% else %}
-        		<div style="width:64px"></div>
-        	{% endif %}
+      <a href="{{ link }}">
+        <div class="layout-horizontal mx">
+          <div class="layout-self-start mlsm">
+            {% if gtype == "first" or gtype == "firstlast" %}
+              {% if roomAvatar %}
+                <iron-image sizing="cover" preload class="avatar layout-self-start mr" src="{{ roomAvatar }}"></iron-image>
+              {% else %}
+                <div class="avatar initials text-primary white background-grey mr">{{ initials }}</div>
+              {% endif %}
+            {% else %}
+              <div style="width:64px"></div>
+            {% endif %}
+          </div>
+          <div class="layout-flex text-primary">
+            {% if gtype == "first" or gtype == "firstlast" %}
+              <div class="layout-horizontal layout-around-justified layout-inline">
+                <div class="font-bold" style="width:100%">{{ roomName }}</div>&nbsp;
+                <div style="width:100%;text-align:right;"><at-carbon-moment class="text-secondary" datetime="{{ date }}" format="h:mm A" auto-refresh></at-carbon-moment></div>
+              </div>
+              <div class="font-body1 mtsm mbsm">
+                <span>{{ displayName }}</span>.&nbsp;<span class="grey">{{ description }}</span>
+              </div>
+            {% else %}
+              <div class="font-body1 mbsm">
+                <span>{{ displayName }}</span>.&nbsp;<span class="grey">{{ description }}</span>
+              </div>
+            {% endif %}
+      			{% if fileCount == 1 %}
+        			<div class="layout-horizontal mbsm">
+        				<iron-image sizing="cover" class="file" preload src="/components/webex-teams-overview/Webex_Files.svg"></iron-image>
+        				<span style="padding:5px">&nbsp;1 file attachment</span>
+        			</div>
+      			{% endif %}
+      			{% if fileCount > 1 %}
+        			<div class="layout-horizontal mbsm">
+          			<iron-image sizing="cover" class="file" preload src="/components/webex-teams-overview/Webex_Files.svg"></iron-image>
+        				<span style="padding:5px">&nbsp;{{ fileCount }}&nbsp;file attachments</span>
+        			</div>
+      			{% endif %}
+            {% if gtype == "last" or gtype == "firstlast" %}
+              <div class="font-caption grey {% if final %}mb{% endif %}">
+                {% if hiddenCount > 0 %}
+                  +{% if hiddenCount < 48 %}{{ hiddenCount }}{% endif %}&nbsp;more
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
         </div>
-      	<div class="layout-flex text-primary">
-        	{% if gtype == "first" or gtype == "firstlast" %}
-          	<div class="layout-horizontal layout-around-justified layout-inline">
-            	<div class="font-bold" style="width:100%">{{ roomName }}</div>&nbsp;
-              <div style="width:100%;text-align:right;"><at-carbon-moment class="text-secondary" datetime="{{ date }}" format="h:mm A" auto-refresh></at-carbon-moment></div>
-            </div>
-        		<div class="font-body1 mtsm mbsm">
-        			<span>{{displayName}}</span>.&nbsp;<span class="grey">{{ description | truncate: 80 }}</span>
-            </div>
-        	{% else %}
-            <div class="font-body1 mbsm">
-        			<span>{{displayName}}</span>.&nbsp;<span class="grey">{{ description | truncate: 80 }}</span>
-            </div>
-        	{% endif %}
-        	{% if gtype == "last" or gtype == "firstlast" %}
-        		<div class="font-caption grey {% if final %}mb{% endif %}">
-        			{% if hiddenCount > 0 %}
-        				+{% if hiddenCount < 48 %}{{hiddenCount}}{% endif %}&nbsp;more
-        			{% endif %}
-        		</div>
-        	{% endif %}
-      	</div>
-      </div>
+      </a>
       {% if gtype == "last" or gtype == "firstlast" %}
       	{% unless final %}
       		<div class="bb mxlg mb mtsm grey" style="height:1px;"></div>
@@ -50,14 +64,16 @@ properties:
       {% endif %}
 
       <style>
-      .action:hover {
-        background-color: #F5f5f5;
-      }
-
       .avatar {
         border-radius: 50%;
         width: 48px;
         height: 48px;
+      }
+        
+      .file {
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
       }
 
       .initials {

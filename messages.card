@@ -1,23 +1,15 @@
 properties:
-  view3:
-    type: element
-    title: Liquid View 3
-    xtype: at-core-view
-    view: |-
-      <div class="font-display1 background-lightGrey black px pbsm">
-        	Recent Messages
-      </div>
-    modelRoot: state.model
   vlist1:
     type: element
     xtype: at-core-vlist
     itemComponent: webex-teams-overview/webex-teams-overview-message-card
-    listHeight: 300px
+    listHeight: 500px
     actionListeners:
       - _all
     items: []
     model: 
     modelRoot: state.model.messages
+    listHeightExpanded: 500px
 rules: []
 $meta:
   cardId: !!int 23
