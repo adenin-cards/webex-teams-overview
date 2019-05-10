@@ -1,6 +1,6 @@
 {
-  "name": "webex-teams",
-  "version": "0.0.1.297",
+  "name": "webex-teams-overview",
+  "version": "0.0.1.24",
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#master"

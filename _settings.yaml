@@ -26,10 +26,10 @@ CommonPart:
   VersionModifiedUtc: 2019-04-29T08:24:01.0000000
 ServicePart:
   ConnectorTypeName: ScriptConnector
-  ConnectorTypeId: !!int 11
-  ConnectorName: webex
+  ConnectorTypeId: !!int 5
+  ConnectorName: webex-teams
   ServiceName: recentmessages
-  Url: ~/api/adenin.GateKeeper.Connector/webex/recentmessages
+  Url: ~/api/adenin.GateKeeper.Connector/webex-teams/recentmessages
   ServiceParameters: '{}'
 SearchContextPart:
   Query: null

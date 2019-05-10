@@ -10,7 +10,10 @@ properties:
     xclass: 
     actionListeners:
       - _start
-    customizable: !!bool true
+    links:
+      - title: Open Teams in Browser
+        url: https://teams.webex.com/
+        icon: now:link
   content:
     type: element
     xtype: at-core-view
@@ -20,9 +23,9 @@ properties:
       <div class="layout-vertical">
         <div class="font-headline layout-self-center mx mt">You're all caught up!</div>
         <div class="font-subhead layout-self-center m">You have no recent Webex Teams activity.</div>
-        <at-carbon-button class="layout-self-center mx mblg" href="https://teams.webex.com" style="border-radius:25px">
+        <a class="layout-self-center mx mblg" href="ciscospark://im?space"><at-carbon-button class="layout-self-center mx mblg" style="border-radius:25px">
         	<span class="white mx">Go to Webex Teams</span>
-        </at-carbon-button>
+        </at-carbon-button></a>
       </div>
       {% else %}
       <div class="layout-vertical bottom-half-color">
@@ -95,7 +98,7 @@ properties:
     title: View All Activity
     xtype: at-carbon-card-footer
     xgridcols: 12
-    href: https://teams.webex.com
+    href: ciscospark://im?space=
     modelBind: 'hide: messages.items.length < 1 && mentions.items.length < 1'
 $meta:
   cardId: !!int 23
