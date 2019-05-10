@@ -23,53 +23,44 @@ properties:
       <div class="layout-vertical">
         <div class="font-headline layout-self-center mx mt">You're all caught up!</div>
         <div class="font-subhead layout-self-center m">You have no recent Webex Teams activity.</div>
-        <a class="layout-self-center mx mblg" href="ciscospark://im?space"><at-carbon-button class="layout-self-center mx mblg" style="border-radius:25px">
-        	<span class="white mx">Go to Webex Teams</span>
-        </at-carbon-button></a>
+        <a class="layout-self-center mx mblg" href="ciscospark://im?space">
+        	<at-carbon-button class="layout-self-center mx mblg" style="border-radius:25px">
+        		<span class="white mx">Go to Webex Teams</span>
+        	</at-carbon-button>
+        </a>
       </div>
       {% else %}
       <div class="layout-vertical bottom-half-color">
         <div class="font-headline layout-self-center">Recent Activity</div>
         <div class="layout-horizontal layout-around-justified mx my">
-        		{% if messages.items.length > 0 %}
+      		{% if messages.items.length > 0 %}
           	<div class="layout-vertical layout-center launch-modal" tap-event="dialog" tap-event-data="messages" dialog-title="Recent Messages">
             	<div class="layout-center-justified">
-            		<iron-image sizing="cover" class="icon" preload src="/components/webex-teams-overview/Webex_message.svg"></iron-image>
+            		<iron-image sizing="cover" class="webex-modal-badge" preload src="/components/webex-teams-overview/Webex_message.svg"></iron-image>
         	    </div>
           	  <div class="layout-horizontal layout-center">
             	  <div class="font-headline">{{messages.count}}</div>
       	        <div class="text-secondary {% if mentions.items.length > 0 or files.items.length > 0 %}desktop-only{% endif %}">&nbsp;Messages</div>
         	    </div>
       	   	</div>
-        	  {% endif %}
-          	{% if mentions.items.length > 0 %}
+      		{% endif %}
+          {% if mentions.items.length > 0 %}
       	    <div class="layout-vertical layout-center launch-modal" tap-event="dialog" tap-event-data="mentions" dialog-title="Recent Mentions">
         	    <div class="layout-center-justified">
-          	    <iron-image sizing="cover" class="icon" preload src="/components/webex-teams-overview/Webex_at.svg"></iron-image>
+          	    <iron-image sizing="cover" class="webex-modal-badge" preload src="/components/webex-teams-overview/Webex_at.svg"></iron-image>
          	  	</div>
           	  <div class="layout-horizontal layout-center">
               	<div class="font-headline">{{mentions.count}}</div>
               	<div class="text-secondary {% if messages.items.length > 0 or files.items.length > 0 %}desktop-only{% endif %}">&nbsp;Mentions</div>
             	</div>
           	</div>
-          	{% endif %}
-          	{% if files.items.length > 0 %}
-          	<div class="layout-vertical layout-center launch-modal"  tap-event="dialog" tap-event-data="files">
-            	<div class="layout-center-justified">
-              	<iron-image sizing="cover" class="icon" preload src="/components/webex-teams-overview/Webex_Files.svg"></iron-image>
-            	</div>
-            	<div class="layout-horizontal layout-center">
-              	<div class="font-headline">{{files.items.length}}</div>
-              	<div class="text-secondary {% if messages.items.length > 0 or mentions.items.length > 0 %}desktop-only{% endif %}">&nbsp;Files</div>
-            	</div>
-          	</div>
-          	{% endif %}
+      		{% endif %}
       	</div>
       </div>
       {% endif %}
 
       <style>
-        .icon {
+        .webex-modal-badge {
         	width: 64px;
           height: 64px;
         }
